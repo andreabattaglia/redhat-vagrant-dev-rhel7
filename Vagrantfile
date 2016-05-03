@@ -13,7 +13,7 @@ Vagrant.configure(2) do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "rhel-server-7"
+  config.vm.box = "rhel7base"
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -88,7 +88,6 @@ end
   #   sudo apt-get update
   #   sudo apt-get install -y apache2
   # SHELL
-  config.vm.provision "shell",
-    inline: "sudo sed -i 's/\(127\.0\.0\.1\)\s*.*\s*\(localhost\)\s/\1\t\2 /' /etc/hosts",
-    run: "always"
+  config.vm.provision "shell", path: "hostname.sh", run: "always"
+
 end
